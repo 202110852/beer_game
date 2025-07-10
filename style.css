@@ -12,12 +12,14 @@ body {
   min-height: 100dvh;
   justify-content: flex-start;
   overflow: hidden;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 #cup {
-  width: 90vw;
+  width: 100%;
   max-width: 440px;
   aspect-ratio: 440/408;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   position: relative;
   overflow: visible;
   background: none;
@@ -40,7 +42,8 @@ body {
 }
 #beerCupSVG {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-width: 440px;
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -157,4 +160,27 @@ h1 {
   left: 50%;
   top: 0;
   transform: translate(-50%, -129px);
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  #title {
+    font-size: 1.2rem;
+  }
+  #cup {
+    max-width: 98vw;
+  }
+  #beerCupSVG {
+    max-width: 98vw;
+  }
+  #backgroundImage {
+    width: 100vw;
+    height: auto;
+  }
+  /* 필요시 버튼, 모달 등도 크기 조정 */
 }
