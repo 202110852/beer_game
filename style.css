@@ -151,11 +151,15 @@ h1 {
   pointer-events: none;
 }
 #backgroundImage {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
   width: 400px;
   height: 400px;
   object-fit: contain;
   user-select: none;
-  pointer-events: auto;
   position: absolute;
   left: 50%;
   top: 0;

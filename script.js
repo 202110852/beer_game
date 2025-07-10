@@ -45,11 +45,18 @@ window.addEventListener("DOMContentLoaded", () => {
   bgImg.addEventListener("contextmenu", (e) => e.preventDefault());
   // 이미지 드래그 방지
   bgImg.addEventListener("dragstart", (e) => e.preventDefault());
-  // 모바일에서 길게 눌러도 메뉴 안 뜨게
+  // 모바일에서 길게 눌러도 메뉴 안 뜨게 (모든 터치에서 preventDefault)
   bgImg.addEventListener(
     "touchstart",
     (e) => {
-      if (e.touches.length > 1) e.preventDefault();
+      e.preventDefault(); // 항상 기본 동작 막기
+    },
+    { passive: false }
+  );
+  bgImg.addEventListener(
+    "touchend",
+    (e) => {
+      e.preventDefault(); // 항상 기본 동작 막기
     },
     { passive: false }
   );
