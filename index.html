@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>맥주 따르기</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="backgroundLayer">
+      <img id="backgroundImage" src="beer1.png" />
+    </div>
+    <h2 id="title">맥주를 최대한 넘치지않게 따라보세요!</h2>
+    <div id="spacer"></div>
+    <div id="cup">
+      <svg id="beerCupSVG" viewBox="0 0 440 408">
+        <!-- 맥주(동적 path) -->
+        <path id="beerPath" fill="#f4a460" stroke="#e0b95b" stroke-width="2" />
+        <!-- 세로 홈(각진 부분, 윗부분 짧게) -->
+        <g id="cupGrooves">
+          <rect
+            x="150"
+            y="92"
+            width="12"
+            height="220"
+            rx="4"
+            fill="#fff"
+            opacity="0.09"
+          />
+          <rect
+            x="190"
+            y="92"
+            width="12"
+            height="220"
+            rx="4"
+            fill="#fff"
+            opacity="0.09"
+          />
+          <rect
+            x="230"
+            y="92"
+            width="12"
+            height="220"
+            rx="4"
+            fill="#fff"
+            opacity="0.09"
+          />
+          <rect
+            x="270"
+            y="92"
+            width="12"
+            height="220"
+            rx="4"
+            fill="#fff"
+            opacity="0.09"
+          />
+        </g>
+        <!-- 거품 그룹 -->
+        <g id="foamGroup"></g>
+        <!-- 맥주잔 입구 타원 (외곽선 윗부분과 정확히 일치) -->
+        <ellipse
+          cx="220"
+          cy="58"
+          rx="100"
+          ry="20"
+          fill="none"
+          stroke="#fff"
+          stroke-width="3"
+          opacity="0.35"
+        />
+        <!-- 맥주잔 외곽선(윗부분 없이 옆면~바닥만, 타원과 정확히 일치) -->
+        <path
+          d="M120,58 L120,348 Q220,396 320,348 L320,58"
+          fill="none"
+          stroke="#fff"
+          stroke-width="7"
+          opacity="0.25"
+        />
+        <!-- 바닥 두께 강조 (흰색) -->
+        <ellipse
+          cx="220"
+          cy="348"
+          rx="88"
+          ry="19.2"
+          fill="none"
+          stroke="#fff"
+          stroke-width="2.5"
+          opacity="0.18"
+        />
+        <!-- 손잡이(핸들, 가로폭 넓힘) -->
+        <path
+          d="M320,96 Q440,204 320,312 Q400,204 320,96"
+          fill="none"
+          stroke="#fff"
+          stroke-width="8"
+          opacity="0.13"
+        />
+        <path
+          d="M320,120 Q410,204 320,288 Q380,204 320,120"
+          fill="none"
+          stroke="#fff"
+          stroke-width="3"
+          opacity="0.22"
+        />
+      </svg>
+      <div id="beerStream" style="display: none"></div>
+    </div>
+
+    <div id="customModal" style="display: none">
+      <div id="customModalContent">
+        <span id="customModalMsg"></span>
+        <div
+          style="
+            margin-top: 18px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+          "
+        >
+          <button id="customModalShareBtn">공유하기</button>
+          <button id="customModalRetryBtn">다시시도</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  </body>
+</html>
