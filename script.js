@@ -28,20 +28,40 @@ function getPercent() {
   return ((level / maxLevel) * 100).toFixed(1);
 }
 
+// 이미지 미리 로드
+const beer1Img = new Image();
+beer1Img.src = "beer1.png";
+const beer2Img = new Image();
+beer2Img.src = "beer2.png";
+
 // 기존 btn(따르기 시작 버튼) 관련 코드 제거 및 bgImg에 이벤트 연결
 // 기존 mousedown, mouseup, touchstart, touchend, mouseleave 이벤트 제거
 window.addEventListener("DOMContentLoaded", () => {
   const bgImg = document.getElementById("backgroundImage");
 
+  // pointer 이벤트 바인딩 ...
+
+  // 우클릭(컨텍스트 메뉴) 방지
+  bgImg.addEventListener("contextmenu", (e) => e.preventDefault());
+  // 이미지 드래그 방지
+  bgImg.addEventListener("dragstart", (e) => e.preventDefault());
+  // 모바일에서 길게 눌러도 메뉴 안 뜨게
+  bgImg.addEventListener(
+    "touchstart",
+    (e) => {
+      if (e.touches.length > 1) e.preventDefault();
+    },
+    { passive: false }
+  );
+
   bgImg.addEventListener("pointerdown", () => {
+    bgImg.src = "beer2.png";
     pouring = true;
     beerStream.style.display = "block";
     updateBeerStream();
-    requestAnimationFrame(() => {
-      bgImg.src = "beer2.png";
-    });
   });
   bgImg.addEventListener("pointerup", () => {
+    bgImg.src = "beer1.png";
     pouring = false;
     beerStream.style.display = "none";
     const percent = getPercent();
@@ -50,16 +70,11 @@ window.addEventListener("DOMContentLoaded", () => {
     } else if (percent < 100) {
       showModal(`맥주를 ${Math.floor(percent)}% 채웠어요!`);
     }
-    requestAnimationFrame(() => {
-      bgImg.src = "beer1.png";
-    });
   });
   bgImg.addEventListener("pointerleave", () => {
+    bgImg.src = "beer1.png";
     pouring = false;
     beerStream.style.display = "none";
-    requestAnimationFrame(() => {
-      bgImg.src = "beer1.png";
-    });
   });
 });
 
